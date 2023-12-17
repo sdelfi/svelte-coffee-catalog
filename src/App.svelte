@@ -1,19 +1,19 @@
 <script lang="ts">
-  import './global.less';
+  import "./global.less";
 
-  console.log('Index page');
-
-  type Test = {
-    color: string;
+  type AppProps = {
+    textColor: string;
+    text: string;
   };
 
-  const test: Test = {
-    color: 'white',
+  const appProps: AppProps = {
+    textColor: "white",
+    text: "Index page",
   };
 </script>
 
-<main style:color={test.color}>
-  <div class="inner">Index page</div>
+<main style:color={appProps.textColor}>
+  <div class="inner">{appProps.text}</div>
 </main>
 
 <style lang="less">

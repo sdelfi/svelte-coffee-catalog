@@ -8,17 +8,29 @@
   "license": "ISC",
   "scripts": {
     "build:dev": "yarn clean && yarn webpack --env development",
-    "build:prod": "yarn run clean && yarn webpack",
+    "build:prod": "yarn clean && yarn webpack",
     "clean": "yarn rimraf ./public/build/*",
     "start": "yarn webpack-dev-server --env development=true",
     "test": "yarn jest src",
-    "test:watch": "yarn test -- --watch"
+    "test:watch": "yarn test -- --watch",
+    "lint": "npm-run-all lint:*",
+    "lint:ts": "yarn tsc --noEmit",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --write src"
   },
   "devDependencies": {
     "@tsconfig/svelte": "5.0.2",
+    "@typescript-eslint/parser": "6.14.0",
+    "css-loader": "6.8.1",
+    "eslint": "8.56.0",
+    "eslint-plugin-svelte": "2.35.1",
+    "husky": "8.0.3",
     "less": "4.2.0",
     "less-loader": "11.1.3",
-    "mini-css-extract-plugin": "^2.7.6",
+    "mini-css-extract-plugin": "2.7.6",
+    "npm-run-all": "4.1.5",
+    "prettier": "3.1.1",
+    "prettier-plugin-svelte": "3.1.2",
     "svelte": "4.2.8",
     "svelte-loader": "3.1.9",
     "svelte-preprocess": "5.1.2",
@@ -26,7 +38,6 @@
     "webpack": "5.89.0",
     "webpack-cli": "5.1.4",
     "webpack-dev-server": "4.15.1",
-    "yarn": "1.22.21",
-    "css-loader": "6.8.1"
+    "yarn": "1.22.21"
   }
 }
