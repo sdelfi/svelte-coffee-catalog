@@ -4,7 +4,10 @@ export interface CatalogItem {
   location: string;
   description: string;
   tags: string[];
-  imageCaption: string;
+  image: {
+    src: string;
+    caption?: string;
+  };
 }
 
 export interface CatalogItemDTO {

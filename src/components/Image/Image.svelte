@@ -30,11 +30,11 @@
 
 <figure class="image">
   {#if isLoading}
-    <div class="image__spinner" style="--spinner-color: var(--color-primary)">
+    <div class="image__spinner">
       <Spinner />
     </div>
   {:else}
-    <img {src} {alt} class="image__img" in:fade />
+    <img {src} {alt} class="image__img" in:fade={{ duration: 500 }} />
     {#if caption}
       <figcaption class="image__caption">{caption}</figcaption>
     {/if}
@@ -43,6 +43,8 @@
 
 <style lang="less">
   .image {
+    --spinner-color: var(--color-primary);
+
     height: 0;
     padding-bottom: 100%;
     position: relative;

@@ -2,14 +2,13 @@
   import type { CatalogItem } from "@/types/catalog.types";
   import { getRandomFlatColor } from "@/utils/color";
   import Image from "../Image/Image.svelte";
-  import { IMAGE_GENERATOR_URL } from "@/constants";
 
   export let item: CatalogItem;
 </script>
 
 <div class="card">
   <p class="card__image">
-    <Image src={IMAGE_GENERATOR_URL} alt={item.name} caption={item.imageCaption} />
+    <Image src={item.image.src} alt={item.name} caption={item.image.caption} />
   </p>
 
   <p class="card__location">{item.location}</p>
