@@ -1,8 +1,8 @@
 <script lang="ts">
   import { catalog } from "@/stores/catalog";
   import { onDestroy, onMount } from "svelte";
-  import CardList from "../CardList/CardList.svelte";
-  import LoadButton from "../LoadButton/LoadButton.svelte";
+  import CardList from "@/components/CardList/CardList.svelte";
+  import LoadButton from "@/components/LoadButton/LoadButton.svelte";
 
   const { fetchItem, reset, isLoading } = catalog;
 

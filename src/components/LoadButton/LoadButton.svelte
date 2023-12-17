@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Spinner from "../Spinner/Spinner.svelte";
+  import Spinner from "@/components/Spinner/Spinner.svelte";
 
   export let isLoading: boolean = false;
   export let onClick: () => void = () => {};

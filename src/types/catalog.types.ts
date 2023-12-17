@@ -1,8 +1,8 @@
 export interface CatalogItem {
   uid: string;
   name: string;
-  origin: string;
-  variety: string;
+  location: string;
+  description: string;
   tags: string[];
-  intensifier: string;
+  imageCaption: string;
 }

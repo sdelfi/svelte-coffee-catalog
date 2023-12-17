@@ -6,18 +6,19 @@
 </script>
 
 <div class="card">
-  <div class="card__image-container">
+  <figure class="card__image-container">
     <img src="https://loremflickr.com/500/500/coffee_bean" alt={item.name} class="card__image" />
-  </div>
+    <figcaption class="card__image-caption">{item.imageCaption}</figcaption>
+  </figure>
 
   <h1 class="card__title">{item.name}</h1>
 
-  <div class="card__tags">
-    <div class="card__tags-inner">
-      {#each item.tags as tag}
-        <span class="card__tag" style:background={getRandomFlatColor()}>{tag}</span>
-      {/each}
-    </div>
+  <p class="description">{item.description}</p>
+
+  <div class="card__tag-list">
+    {#each item.tags as tag}
+      <span class="card__tag" style:background={getRandomFlatColor()}>{tag}</span>
+    {/each}
   </div>
 </div>
 
@@ -50,12 +51,8 @@
       font-weight: 700;
     }
 
-    &__tags {
+    &__tag-list {
       overflow-x: auto;
-      margin-bottom: 20px;
-    }
-
-    &__tags-inner {
       gap: 10px;
       display: flex;
     }
