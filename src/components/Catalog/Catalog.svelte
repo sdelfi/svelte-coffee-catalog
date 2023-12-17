@@ -3,16 +3,15 @@
   import { onDestroy, onMount } from "svelte";
   import CardList from "@/components/CardList/CardList.svelte";
   import LoadButton from "@/components/LoadButton/LoadButton.svelte";
+  import { useInactiveChecker } from "@/hooks/useInactiveChecker";
+  import { USER_INACTIVITY_TIMEOUT_MS } from "@/constants";
 
   const { fetchItem, reset, isLoading } = catalog;
 
   onMount(fetchItem);
   onDestroy(reset);
 
-  // TODO: запускать только если пользователь ничего не делал в течение 30 секунд
-  setInterval(() => {
-    fetchItem();
-  }, 30000);
+  useInactiveChecker(() => fetchItem(), USER_INACTIVITY_TIMEOUT_MS);
 </script>
 
 <div class="catalog">
