@@ -6,3 +6,12 @@ export interface CatalogItem {
   tags: string[];
   imageCaption: string;
 }
+
+export interface CatalogItemDTO {
+  blend_name: string;
+  origin: string;
+  variety: string;
+  notes: string;
+  intensifier: string;
+  uid: string;
+}

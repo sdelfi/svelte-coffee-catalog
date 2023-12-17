@@ -25,8 +25,8 @@
     height: 50px;
     border-radius: 50%;
     border: none;
-    background-color: #596275;
-    color: #fff;
+    background-color: var(--background-color-lighter);
+    color: var(--color-light);
     font-size: 24px;
     font-weight: 700;
     cursor: pointer;

@@ -1,19 +1,22 @@
 <script lang="ts">
   import type { CatalogItem } from "@/types/catalog.types";
   import { getRandomFlatColor } from "@/utils/color";
+  import Image from "../Image/Image.svelte";
+  import { IMAGE_GENERATOR_URL } from "@/constants";
 
   export let item: CatalogItem;
 </script>
 
 <div class="card">
-  <figure class="card__image-container">
-    <img src="https://loremflickr.com/500/500/coffee_bean" alt={item.name} class="card__image" />
-    <figcaption class="card__image-caption">{item.imageCaption}</figcaption>
-  </figure>
+  <p class="card__image">
+    <Image src={IMAGE_GENERATOR_URL} alt={item.name} caption={item.imageCaption} />
+  </p>
 
-  <h1 class="card__title">{item.name}</h1>
+  <p class="card__location">{item.location}</p>
 
-  <p class="description">{item.description}</p>
+  <p class="card__title">{item.name}</p>
+
+  <p class="card__description">{item.description}</p>
 
   <div class="card__tag-list">
     {#each item.tags as tag}
@@ -26,35 +29,38 @@
   .card {
     padding: 30px;
     overflow: hidden;
-    background: #fff;
-    color: #000;
+    background: var(--background-color-inverse);
+    color: var(--text-color-inverse);
     height: 100%;
 
-    &__image-container {
-      height: 0;
-      padding-bottom: 100%;
-      margin-bottom: 20px;
-      position: relative;
+    &__image {
+      margin-bottom: 10px;
     }
 
-    &__image {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
+    &__location {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-primary);
+      font-style: italic;
     }
 
     &__title {
-      margin-bottom: 20px;
+      margin-bottom: 5px;
       font-size: 24px;
       font-weight: 700;
+    }
+
+    &__description {
+      margin-bottom: 20px;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
     &__tag-list {
       overflow-x: auto;
       gap: 10px;
       display: flex;
+      overscroll-behavior: contain;
     }
 
     &__tag {

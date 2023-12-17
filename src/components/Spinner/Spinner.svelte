@@ -4,7 +4,7 @@
 
 <style lang="less">
   .spinner {
-    color: var(--color, #fff);
+    color: var(--spinner-color);
     width: 100%;
     height: 100%;
     overflow: visible;
@@ -15,7 +15,7 @@
       stroke-dasharray: 44px;
       stroke-dashoffset: 11px;
       transform-origin: center;
-      transform: rotatey(180deg) rotate(90deg);
+      transform: rotateY(180deg) rotate(90deg);
       animation: spinner 3850ms infinite ease;
     }
   }

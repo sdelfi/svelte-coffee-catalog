@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "./global.less";
+  import "@/assets/css/global.less";
   import Catalog from "@/components/Catalog/Catalog.svelte";
 </script>
 
