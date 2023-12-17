@@ -1,29 +1,8 @@
 <script lang="ts">
   import "./global.less";
-
-  type AppProps = {
-    textColor: string;
-    text: string;
-  };
-
-  const appProps: AppProps = {
-    textColor: "white",
-    text: "Index page",
-  };
+  import Catalog from "./components/Catalog/Catalog.svelte";
 </script>
 
-<main style:color={appProps.textColor}>
-  <div class="inner">{appProps.text}</div>
+<main>
+  <Catalog />
 </main>
-
-<style lang="less">
-  main {
-    background: blue;
-    padding: 10px;
-
-    .inner {
-      text-align: center;
-      background: cadetblue;
-    }
-  }
-</style>
