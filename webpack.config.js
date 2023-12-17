@@ -1,41 +1,50 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SveltePreprocess = require('svelte-preprocess');
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const sveltePreprocess = require("svelte-preprocess");
 
 module.exports = (env) => {
   const isDev = !!(env && env.development);
 
   return {
-    mode: isDev ? 'development' : 'production',
+    mode: isDev ? "development" : "production",
     entry: {
-      'build/bundle': ['./src/main.ts'],
+      "build/bundle": ["./src/main.ts"],
     },
     output: {
-      path: path.join(__dirname, '/public'),
-      filename: '[name].js',
-      chunkFilename: '[name].[id].js',
+      path: path.join(__dirname, "/public"),
+      filename: "[name].js",
+      chunkFilename: "[name].[id].js",
     },
     resolve: {
-      alias: {
-        svelte: path.resolve('node_modules', 'svelte/src/runtime'),
-      },
-      extensions: ['.mjs', '.js', '.svelte'],
-      mainFields: ['svelte', 'browser', 'module', 'main'],
-      conditionNames: ['svelte', 'browser', 'import'],
+      plugins: [new TsconfigPathsPlugin()],
+      // alias: {
+      //   "~": path.resolve(__dirname, "src"),
+      //   svelte: path.resolve(__dirname, "node_modules", "svelte/src/runtime"),
+      // },
+      // extensions: [".mjs", ".js", ".svelte"],
+      // mainFields: ["svelte", "browser", "module", "main"],
+      // conditionNames: ["svelte", "browser", "import"],
     },
     module: {
       rules: [
         {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: "babel-loader",
+          },
+        },
+        {
           test: /\.(html|svelte)$/,
           use: {
-            loader: 'svelte-loader',
+            loader: "svelte-loader",
             options: {
               compilerOptions: {
                 dev: isDev,
               },
-              emitCss: !isDev,
               hotReload: isDev,
-              preprocess: SveltePreprocess(),
+              preprocess: sveltePreprocess(),
             },
           },
         },
@@ -51,21 +60,25 @@ module.exports = (env) => {
           use: [
             MiniCssExtractPlugin.loader,
             {
-              loader: 'css-loader',
+              loader: "css-loader",
               options: {
                 url: false, // necessary if you use url('/path/to/some/asset.png|jpg|gif')
               },
             },
-            'less-loader',
+            "less-loader",
           ],
+        },
+        {
+          test: /\.(jpg|jpeg|png|svg)$/,
+          use: "file-loader",
         },
       ],
     },
-    plugins: [new MiniCssExtractPlugin({ filename: './[name].css' })],
+    plugins: [new MiniCssExtractPlugin({ filename: "./[name].css" })],
     devServer: {
       hot: true,
       static: {
-        directory: path.join(__dirname, 'public'),
+        directory: path.join(__dirname, "public"),
       },
     },
   };

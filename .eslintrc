@@ -26,6 +26,11 @@
     "**/build",
     "*.less",
     "*.css",
-    "*.json"
-  ]
+    "*.json",
+    "webpack.config.js"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true
+  },
 }
