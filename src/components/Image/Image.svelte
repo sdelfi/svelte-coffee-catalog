@@ -1,15 +1,12 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import Spinner from "@/components/Spinner/Spinner.svelte";
-  import { fade } from "svelte/transition";
 
   export let src: string;
   export let alt: string = "";
   export let caption: string = "";
 
-  let loaded = false;
-  let failed = false;
-  let isLoading: boolean = false;
+  let isLoading: boolean = true;
 
   onMount(() => {
     const img = new Image();
@@ -18,26 +15,23 @@
 
     img.onload = () => {
       isLoading = false;
-      loaded = true;
     };
 
     img.onerror = () => {
       isLoading = false;
-      failed = true;
     };
   });
 </script>
 
-<figure class="image">
+<figure class="image" class:image--loading={isLoading}>
   {#if isLoading}
     <div class="image__spinner">
       <Spinner />
     </div>
-  {:else}
-    <img {src} {alt} class="image__img" in:fade={{ duration: 500 }} />
-    {#if caption}
-      <figcaption class="image__caption">{caption}</figcaption>
-    {/if}
+  {/if}
+  <img {src} {alt} class="image__img" />
+  {#if caption}
+    <figcaption class="image__caption">{caption}</figcaption>
   {/if}
 </figure>
 
@@ -48,6 +42,14 @@
     height: 0;
     padding-bottom: 100%;
     position: relative;
+
+    &--loading {
+      background: var(--color-light-gray);
+
+      .image__img {
+        opacity: 0;
+      }
+    }
 
     &__spinner {
       position: absolute;
@@ -63,6 +65,8 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
     }
 
     &__caption {
