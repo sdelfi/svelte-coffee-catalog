@@ -2,11 +2,19 @@
   import type { CatalogItem } from "@/types/catalog.types";
   import { getRandomFlatColor } from "@/utils/color";
   import Image from "../Image/Image.svelte";
+  import { quintOut } from "svelte/easing";
+  import { scale } from "svelte/transition";
 
   export let item: CatalogItem;
+
+  let element: HTMLDivElement;
+
+  const onInAnimationEnd = () => {
+    element?.scrollIntoView({ behavior: "smooth" });
+  };
 </script>
 
-<div class="card">
+<div class="card" bind:this={element} in:scale={{ easing: quintOut }} on:introend={onInAnimationEnd}>
   <p class="card__image">
     <Image src={item.image.src} alt={item.name} caption={item.image.caption} />
   </p>
@@ -26,7 +34,7 @@
 
 <style lang="less">
   .card {
-    padding: 30px;
+    padding: 15px;
     overflow: hidden;
     background: var(--background-color-inverse);
     color: var(--text-color-inverse);

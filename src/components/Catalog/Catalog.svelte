@@ -25,7 +25,7 @@
     padding: 20px 40px;
 
     &__title {
-      margin: 0 0 20px;
+      margin-bottom: 30px;
       padding: 0;
       font-size: 24px;
       font-weight: 400;
