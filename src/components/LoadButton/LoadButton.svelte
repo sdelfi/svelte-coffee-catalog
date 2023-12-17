@@ -33,7 +33,6 @@
 
     &--disabled {
       opacity: 0.5;
-      cursor: not-allowed;
       padding: 10px;
     }
   }
