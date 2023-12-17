@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { CatalogItem } from "@/types/catalog.types";
-  import { getRandomFlatColor } from "@/utils/color";
+  import { randomFlatColor } from "@/utils/color";
   import Image from "../Image/Image.svelte";
   import { quintOut } from "svelte/easing";
   import { scale } from "svelte/transition";
@@ -27,7 +27,7 @@
 
   <div class="card__tag-list">
     {#each item.tags as tag}
-      <span class="card__tag" style:background={getRandomFlatColor()}>{tag}</span>
+      <span class="card__tag" style:background={randomFlatColor()}>{tag}</span>
     {/each}
   </div>
 </div>
@@ -39,6 +39,9 @@
     background: var(--background-color-inverse);
     color: var(--text-color-inverse);
     height: 100%;
+
+    display: flex;
+    flex-direction: column;
 
     &__image {
       margin-bottom: 10px;
@@ -52,27 +55,46 @@
     }
 
     &__title {
-      margin-bottom: 5px;
+      margin-bottom: 6px;
       font-size: 24px;
       font-weight: 700;
     }
 
     &__description {
-      margin-bottom: 20px;
-      font-size: 14px;
+      margin-bottom: 16px;
+      font-size: 16px;
       line-height: 1.5;
     }
 
     &__tag-list {
-      overflow-x: auto;
+      margin-top: auto;
+      overflow-x: scroll;
       gap: 10px;
       display: flex;
       overscroll-behavior: contain;
+      padding-bottom: 2px;
+
+      scrollbar-width: 2px;
+      scrollbar-color: var(--scrollbar-color) var(--scrollbar-color);
+
+      &::-webkit-scrollbar {
+        width: 2px;
+        height: 2px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: var(--scrollbar-color);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      }
     }
 
     &__tag {
       padding: 5px 10px;
       white-space: nowrap;
+      color: var(--text-color-inverse);
     }
   }
 </style>

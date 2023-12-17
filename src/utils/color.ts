@@ -1,4 +1,4 @@
-export const getRandomFlatColor = (minIntensity = 150, maxIntensity = 255) => {
+export const randomFlatColor = (minIntensity: number = 200, maxIntensity: number = 255): string => {
   const r = Math.floor(Math.random() * (maxIntensity - minIntensity + 1)) + minIntensity;
   const g = Math.floor(Math.random() * (maxIntensity - minIntensity + 1)) + minIntensity;
   const b = Math.floor(Math.random() * (maxIntensity - minIntensity + 1)) + minIntensity;
