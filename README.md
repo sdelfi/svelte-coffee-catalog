@@ -9,6 +9,7 @@
 - Jest
 - ESLint
 - Prettier
+- Husky
 
 ## Запуск
 
