@@ -34,6 +34,7 @@ module.exports = (env) => {
       alias: {
         svelte: path.join(__dirname, "node_modules", "svelte/src/runtime"),
       },
+      modules: ["node_modules"],
     },
     module: {
       rules: [

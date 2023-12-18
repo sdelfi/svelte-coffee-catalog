@@ -1,7 +1,7 @@
 import { onMount, onDestroy } from "svelte";
 
 export const useInactiveChecker = (onInactive: () => void, inactiveTime: number) => {
-  let timeoutId: number | null = null;
+  let timeoutId: ReturnType<typeof setInterval> | null = null;
 
   const resetTimer = () => {
     if (timeoutId !== null) {
