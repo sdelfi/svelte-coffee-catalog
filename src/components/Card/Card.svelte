@@ -74,7 +74,14 @@
       margin-top: auto;
       gap: 10px;
       display: flex;
-      overflow: hidden;
+      overflow: auto;
+      white-space: nowrap;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
     &__tag {
       padding: 5px 10px;
