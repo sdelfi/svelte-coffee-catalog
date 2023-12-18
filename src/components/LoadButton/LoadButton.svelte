@@ -30,10 +30,17 @@
     font-size: 24px;
     font-weight: 700;
     cursor: pointer;
+    transition: all 0.3s ease-out;
 
     &--disabled {
       opacity: 0.5;
       padding: 10px;
+    }
+
+    &:hover:not(:disabled),
+    &:active:not(:disabled) {
+      background-color: var(--color-secondary);
+      color: var(--color-primary);
     }
   }
 </style>

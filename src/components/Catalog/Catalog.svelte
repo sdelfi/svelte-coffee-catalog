@@ -25,7 +25,11 @@
 
 <style lang="less">
   .catalog {
-    padding: 20px 40px;
+    --container-padding: 20px;
+    padding: var(--container-padding);
+    @media (min-width: 768px) {
+      --container-padding: 20px 40px;
+    }
 
     &__title {
       margin-bottom: 20px;
