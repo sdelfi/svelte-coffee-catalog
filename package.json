@@ -2,6 +2,7 @@
   "name": "coffee-catalog",
   "version": "1.0.0",
   "license": "ISC",
+  "homepage": "https://<github-username>.github.io/<project-repo>",
   "scripts": {
     "build:dev": "yarn webpack --env development",
     "build:prod": "yarn webpack",
@@ -11,7 +12,9 @@
     "lint": "npm-run-all lint:*",
     "lint:ts": "yarn tsc --noEmit",
     "lint:fix": "eslint src --fix",
-    "format": "prettier --write src"
+    "format": "prettier --write src",
+    "predeploy": "yarn build:prod",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "@babel/core": "7.23.6",
@@ -26,6 +29,7 @@
     "eslint": "8.56.0",
     "eslint-plugin-svelte": "2.35.1",
     "file-loader": "6.2.0",
+    "gh-pages": "6.1.0",
     "html-loader": "4.2.0",
     "html-webpack-plugin": "5.5.4",
     "husky": "8.0.3",
