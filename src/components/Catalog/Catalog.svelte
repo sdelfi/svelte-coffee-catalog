@@ -5,13 +5,16 @@
   import LoadButton from "@/components/LoadButton/LoadButton.svelte";
   import { useInactiveChecker } from "@/hooks/useInactiveChecker";
   import { USER_INACTIVITY_TIMEOUT_MS } from "@/constants";
+  import { notifications } from "@/stores/notifications";
 
-  const { fetchItem, reset, isLoading } = catalog;
+  const { fetchItem, reset, isLoading, error } = catalog;
 
   onMount(fetchItem);
   onDestroy(reset);
 
   useInactiveChecker(() => fetchItem(), USER_INACTIVITY_TIMEOUT_MS);
+
+  $: $error && notifications.danger($error);
 </script>
 
 <div class="catalog">

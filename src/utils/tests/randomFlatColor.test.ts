@@ -1,4 +1,4 @@
-import { randomFlatColor } from "./color";
+import { randomFlatColor } from "@/utils/randomFlatColor";
 
 describe("randomFlatColor", () => {
   it("Генерирует корректное значение цвета", () => {

@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { CatalogItem } from "@/types/catalog.types";
-  import { randomFlatColor } from "@/utils/color";
-  import Image from "../Image/Image.svelte";
+  import { randomFlatColor } from "@/utils/randomFlatColor";
+  import Image from "@/components/Image/Image.svelte";
   import { quintOut } from "svelte/easing";
   import { scale } from "svelte/transition";
 

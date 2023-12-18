@@ -10,6 +10,7 @@ function createCatalog() {
   const fetchItem = async (): Promise<void> => {
     try {
       isLoading.set(true);
+      error.set(null);
 
       const item = await fetchCatalogItem();
 

@@ -1,7 +1,7 @@
 import { catalog } from "@/stores/catalog";
 import { get } from "svelte/store";
 
-describe("Catalog Store", () => {
+describe("catalog store", () => {
   beforeEach(() => {
     catalog.reset();
   });
