@@ -6,7 +6,7 @@
     "build:dev": "yarn webpack --env development",
     "build:prod": "yarn webpack",
     "dev": "yarn webpack-dev-server --env development=true",
-    "test": "yarn jest src --passWithNoTests",
+    "test": "yarn jest src",
     "test:watch": "yarn test -- --watch",
     "lint": "npm-run-all lint:*",
     "lint:ts": "yarn tsc --noEmit",
@@ -16,7 +16,6 @@
   "devDependencies": {
     "@babel/core": "7.23.6",
     "@babel/preset-env": "7.23.6",
-    "@testing-library/svelte": "4.0.5",
     "@tsconfig/svelte": "5.0.2",
     "@types/jest": "29.5.11",
     "@typescript-eslint/parser": "6.14.0",
