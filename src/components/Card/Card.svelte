@@ -4,6 +4,7 @@
   import Image from "@/components/Image/Image.svelte";
   import { quintOut } from "svelte/easing";
   import { scale } from "svelte/transition";
+  import { useConveyer } from "@egjs/svelte-conveyer";
 
   export let item: CatalogItem;
 
@@ -12,6 +13,8 @@
   const onInAnimationEnd = () => {
     element?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const { ref: tagListRef } = useConveyer({ horizontal: true, useSideWheel: true });
 </script>
 
 <div class="card" bind:this={element} in:scale={{ easing: quintOut }} on:introend={onInAnimationEnd}>
@@ -25,7 +28,7 @@
 
   <p class="card__description">{item.description}</p>
 
-  <div class="card__tag-list">
+  <div class="card__tag-list" use:tagListRef>
     {#each item.tags as tag}
       <span class="card__tag" style:background={randomFlatColor()}>{tag}</span>
     {/each}
@@ -67,30 +70,12 @@
     }
 
     &__tag-list {
+      cursor: grab;
       margin-top: auto;
-      overflow-x: scroll;
       gap: 10px;
       display: flex;
-      overscroll-behavior: contain;
-      padding-bottom: 2px;
-
-      scrollbar-width: 2px;
-      scrollbar-color: var(--scrollbar-color) var(--scrollbar-color);
-
-      &::-webkit-scrollbar {
-        width: 2px;
-        height: 2px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background-color: var(--scrollbar-color);
-      }
-
-      &::-webkit-scrollbar-thumb {
-        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-      }
+      overflow: hidden;
     }
-
     &__tag {
       padding: 5px 10px;
       white-space: nowrap;

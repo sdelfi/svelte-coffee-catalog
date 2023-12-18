@@ -34,3 +34,4 @@ https://sdelfi.github.io/svelte-coffee-catalog/
 
 - добавить autoprefixer (но для начала нужно мигрировать на postcss)
 - тесты для компонентов Svelte
+- написать свою реализацию прокрутки тегов
