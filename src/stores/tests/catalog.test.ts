@@ -1,5 +1,6 @@
 import { catalog } from "@/stores/catalog";
 import { get } from "svelte/store";
+import * as api from "@/services/api";
 
 describe("catalog store", () => {
   beforeEach(() => {
@@ -13,18 +14,20 @@ describe("catalog store", () => {
   });
 
   test("Успешное получение записи", async () => {
-    jest.spyOn(require("@/services/api"), "fetchCatalogItem").mockResolvedValueOnce({
+    jest.spyOn(api, "fetchCatalogItem").mockResolvedValueOnce({
       uid: "1",
       name: "Sample Item",
       location: "Sample Location",
       description: "Sample Description",
       tags: ["tag1", "tag2"],
-      imageCaption: "Sample Caption",
+      image: {
+        caption: "Sample Caption",
+        src: "https://example.com/image.jpg",
+      },
     });
 
     await catalog.fetchItem();
 
-    //   // Check the store state after fetchItem
     expect(get(catalog.isLoading)).toBe(false);
     expect(get(catalog.error)).toBe(null);
     expect(get(catalog)).toEqual([
@@ -34,13 +37,16 @@ describe("catalog store", () => {
         location: "Sample Location",
         description: "Sample Description",
         tags: ["tag1", "tag2"],
-        imageCaption: "Sample Caption",
+        image: {
+          caption: "Sample Caption",
+          src: "https://example.com/image.jpg",
+        },
       },
     ]);
   });
 
   test("Ошибка получения записи", async () => {
-    jest.spyOn(require("@/services/api"), "fetchCatalogItem").mockRejectedValueOnce("Ошибка");
+    jest.spyOn(api, "fetchCatalogItem").mockRejectedValueOnce("Ошибка");
 
     await catalog.fetchItem();
 

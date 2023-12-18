@@ -1,8 +1,6 @@
 <script lang="ts">
   import Card from "@/components/Card/Card.svelte";
   import { catalog } from "@/stores/catalog";
-  import { quintOut } from "svelte/easing";
-  import { scale } from "svelte/transition";
 </script>
 
 <ul class="card-list">

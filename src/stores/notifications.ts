@@ -6,7 +6,7 @@ const TIMEOUT = 3000;
 
 const createNotificationStore = () => {
   const _notifications = writable<Notification[]>([]);
-  let timers: ReturnType<typeof setTimeout>[] = [];
+  const timers: ReturnType<typeof setTimeout>[] = [];
 
   const send = (message: string, type: NotificationType = "default", timeout: number = TIMEOUT): void => {
     _notifications.update((state) => {
@@ -29,9 +29,10 @@ const createNotificationStore = () => {
     if (state.length > 0) {
       const timer = setTimeout(() => {
         _notifications.update((currentState) => {
-          const [firstNotification, ...rest] = currentState;
+          const removedItems = currentState.splice(1); // Удаляем первый элемент и получаем его
+
           timers.shift();
-          return rest;
+          return removedItems;
         });
       }, state[0].timeout);
 

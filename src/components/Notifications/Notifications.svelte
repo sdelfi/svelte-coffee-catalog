@@ -20,7 +20,7 @@
     right: 10px;
     margin: 0 auto;
     padding: 0;
-    z-index: 9999;
+    z-index: 100;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -30,27 +30,24 @@
     &__toast {
       flex: 0 0 auto;
       margin-bottom: 10px;
+      &--type-danger {
+        background: var(--notification-color-danger);
+      }
 
-      &--type- {
-        &danger {
-          background: var(--notification-color-danger);
-        }
+      &--type-success {
+        background: var(--notification-color-success);
+      }
 
-        &success {
-          background: var(--notification-color-success);
-        }
+      &--type-warning {
+        background: var(--notification-color-warning);
+      }
 
-        &warning {
-          background: var(--notification-color-warning);
-        }
+      &--type-info {
+        background: var(--notification-color-info);
+      }
 
-        &info {
-          background: var(--notification-color-info);
-        }
-
-        &default {
-          background: var(--notification-color-default);
-        }
+      &--type-default {
+        background: var(--notification-color-default);
       }
     }
 
