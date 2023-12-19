@@ -29,7 +29,7 @@ const createNotificationStore = () => {
     if (state.length > 0) {
       const timer = setTimeout(() => {
         _notifications.update((currentState) => {
-          const removedItems = currentState.splice(1); // Удаляем первый элемент и получаем его
+          const removedItems = currentState.splice(1);
 
           timers.shift();
           return removedItems;
